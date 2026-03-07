@@ -9,6 +9,7 @@ import { db } from './data/db'
 function App() {
 
 const [data, setData] = useState(db)
+const [cart, setCart] = useState([])
 
 
 //en el caso que sea una api la que proporciona la data esta sería la opción recomendada
@@ -31,7 +32,7 @@ const [data, setData] = useState(db)
         <div className="row mt-5">
 
          {data.map((guitar) => (
-             <Guitar key={guitar.id} guitar={guitar}/>
+             <Guitar key={guitar.id} guitar={guitar} setCart={setCart} cart={cart}/>
          ))}
 
            
