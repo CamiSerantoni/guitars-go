@@ -8,7 +8,7 @@ import { db } from './data/db'
 
 function App() {
 
-const [data, setData] = useState([])
+const [data, setData] = useState(db)
 
 
 //en el caso que sea una api la que proporciona la data esta sería la opción recomendada
@@ -29,8 +29,11 @@ const [data, setData] = useState([])
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-           
-    <Guitar/>
+
+         {data.map(() => (
+             <Guitar/>
+         ))}
+
            
         </div>
     </main>
