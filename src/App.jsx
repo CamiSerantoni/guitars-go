@@ -7,10 +7,15 @@ import { db } from './data/db'
 
 
 function App() {
+ /* en este apartado vas dejando toda la lógica*/
 
 const [data, setData] = useState(db)
 const [cart, setCart] = useState([])
 
+/* enfoque de escribir la función como tal permite crear funciones más descriptivas */
+function  addToCart(item) {
+  setCart(prevCart =>[...prevCart, item])
+} 
 
 //en el caso que sea una api la que proporciona la data esta sería la opción recomendada
 /*useEffect(() =>{
@@ -32,7 +37,13 @@ const [cart, setCart] = useState([])
         <div className="row mt-5">
 
          {data.map((guitar) => (
-             <Guitar key={guitar.id} guitar={guitar} setCart={setCart} cart={cart}/>
+             <Guitar 
+             key={guitar.id} 
+             guitar={guitar} 
+             setCart={setCart} 
+             cart={cart}
+             addToCart={addToCart}
+             />
          ))}
 
            
