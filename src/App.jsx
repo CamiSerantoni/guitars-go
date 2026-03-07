@@ -1,14 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { Header } from './components/Header'
 import { Guitar } from './components/Guitar'
+import { db } from './data/db'
 
 
 function App() {
 
-  //state 
-  const [auth, setAuth] = useState(false);
+const [data, setData] = useState([])
+
+
+//en el caso que sea una api la que proporciona la data esta sería la opción recomendada
+/*useEffect(() =>{
+  setData(db)
+}, [])
+*/
+
 
 
 
