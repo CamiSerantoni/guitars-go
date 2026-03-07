@@ -1,7 +1,10 @@
 import React from 'react'
-export const Guitar = ({guitar, setCart,cart}) => {
+export const Guitar = ({guitar, addToCart}) => {
+  /* en este apartado vas dejando toda la lógica*/
 
   const {name, price, description,  image, id} = guitar
+
+
 
 
   return (
@@ -16,7 +19,7 @@ export const Guitar = ({guitar, setCart,cart}) => {
         <button 
             type="button"
             className="btn btn-dark w-100"
-
+            onClick={() =>addToCart(guitar)}
 
             /* esta es la manera más corta de hacerlo  onClick={() =>setCart(prevCart =>[...prevCart, guitar])} */
         >Agregar al Carrito</button>
