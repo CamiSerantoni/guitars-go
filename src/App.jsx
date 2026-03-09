@@ -18,7 +18,11 @@ function  addToCart(item) {
   const itemExists= cart.findIndex((guitarObject) => guitarObject.id === item.id )
 
   if(itemExists >=0) {
-    console.log('ya existe')
+   // hacemos una copia del carrito para no afectar la inmutabilidad del estado en react
+    const updatedCart = [...cart]
+    updatedCart[itemExists].quantity++
+    setCart(updatedCart)
+
   }else {
 /* agregamos  nueva propiedad al objeto  guitar*/
     item.quantity = 1;
