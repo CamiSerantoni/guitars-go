@@ -14,7 +14,19 @@ const [cart, setCart] = useState([])
 
 /* enfoque de escribir la función como tal permite crear funciones más descriptivas */
 function  addToCart(item) {
-  setCart(prevCart =>[...prevCart, item])
+
+  const itemExists= cart.findIndex((guitarObject) => guitarObject.id === item.id )
+
+  if(itemExists >=0) {
+    console.log('ya existe')
+  }else {
+/* agregamos  nueva propiedad al objeto  guitar*/
+    item.quantity = 1;
+    console.log('no existe, agregando')
+    setCart([ ...cart, item])
+  }
+
+  
 } 
 
 //en el caso que sea una api la que proporciona la data esta sería la opción recomendada
@@ -40,9 +52,7 @@ function  addToCart(item) {
              <Guitar 
              key={guitar.id} 
              guitar={guitar} 
-             setCart={setCart} 
-             cart={cart}
-             addToCart={addToCart}
+                     addToCart={addToCart}
              />
          ))}
 
