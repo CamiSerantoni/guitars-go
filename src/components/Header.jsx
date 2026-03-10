@@ -1,10 +1,20 @@
 import React from 'react'
-import { Guitar } from './Guitar'
+import { useMemo } from 'react'
 
 export const Header = ({cart}) => {
 
 // State derivado, manteniendo ogica fuera del template y utilizamos esta función 
-const isEmpty = () => cart.length === 0 
+
+/*  
+Hook enfocado en performance
+este codigo con useMemo no se ejecuta hasta que cambien ciertas partes en tu código, por lo que 
+le dices por ejemplo "no hagas un render completo hasta que algo particular que te dire que es 
+ " ese algo sería el arreglo de dependencias, por lo cual use memo solo actuará cuando carrito se haya modificado 
+ 
+ */
+const isEmpty = useMemo(() => cart.length === 0, [cart]) 
+
+const cartTotal = useMemo( () => cart.reduce((total, item) => total + (item.quantity * item.price), 0 ), [cart])
 
 
   return (
@@ -25,8 +35,10 @@ const isEmpty = () => cart.length === 0
                         src="./public/img/carrito.png" alt="imagen carrito" />
 
                         <div id="carrito" className="bg-white p-3">
-                           { isEmpty() ? (<p className="text-center">El carrito esta vacio</p> ): (
+                           { isEmpty? (<p className="text-center">El carrito esta vacio</p> ): (
+                        <>
                         
+                      
                             <table className="w-100 table">
                                 <thead>
                                     <tr>
@@ -77,9 +89,10 @@ const isEmpty = () => cart.length === 0
                                     </tr>
                                     ) ) }
                                 </tbody>
-                            </table>
+                            </table>    
+                              <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>  </>
   )} 
-                            <p className="text-end">Total pagar: <span className="fw-bold">$899</span></p>
+                      
                             <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
                         </div>
                     </div>
