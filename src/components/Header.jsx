@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMemo } from 'react'
 
-export const Header = ({cart}) => {
+export const Header = ({cart, removeFromCart}) => {
 
 // State derivado, manteniendo ogica fuera del template y utilizamos esta función 
 
@@ -10,7 +10,6 @@ Hook enfocado en performance
 este codigo con useMemo no se ejecuta hasta que cambien ciertas partes en tu código, por lo que 
 le dices por ejemplo "no hagas un render completo hasta que algo particular que te dire que es 
  " ese algo sería el arreglo de dependencias, por lo cual use memo solo actuará cuando carrito se haya modificado 
- 
  */
 const isEmpty = useMemo(() => cart.length === 0, [cart]) 
 
@@ -82,6 +81,7 @@ const cartTotal = useMemo( () => cart.reduce((total, item) => total + (item.quan
                                             <button
                                                 className="btn btn-danger"
                                                 type="button"
+                                                onClick={() => removeFromCart(guitar.id)}
                                             >
                                                 X
                                             </button>
