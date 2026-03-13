@@ -1,16 +1,18 @@
 import React from 'react'
 import { useMemo } from 'react'
 
-export const Header = ({cart, removeFromCart}) => {
+export const Header = ({cart, removeFromCart, decreaseQuantity, increaseQuantity}) => {
 
-// State derivado, manteniendo ogica fuera del template y utilizamos esta función 
 
-/*  
-Hook enfocado en performance
+
+/* Hook enfocado en performance
 este codigo con useMemo no se ejecuta hasta que cambien ciertas partes en tu código, por lo que 
 le dices por ejemplo "no hagas un render completo hasta que algo particular que te dire que es 
  " ese algo sería el arreglo de dependencias, por lo cual use memo solo actuará cuando carrito se haya modificado 
  */
+// State derivado, es crear una nueva constante que se use para 
+// mantener logica fuera del template y utilizamos esta función para que sea llamada sencillamente 
+
 const isEmpty = useMemo(() => cart.length === 0, [cart]) 
 
 const cartTotal = useMemo( () => cart.reduce((total, item) => total + (item.quantity * item.price), 0 ), [cart])
@@ -66,6 +68,7 @@ const cartTotal = useMemo( () => cart.reduce((total, item) => total + (item.quan
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={() => decreaseQuantity(guitar.id)}
                                             >
                                                 -
                                             </button>
@@ -73,6 +76,7 @@ const cartTotal = useMemo( () => cart.reduce((total, item) => total + (item.quan
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={() => increaseQuantity(guitar.id)}
                                             >
                                                 +
                                             </button>
