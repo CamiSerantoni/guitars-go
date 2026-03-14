@@ -64,6 +64,9 @@ function increaseQuantity(id){
 setCart(updatedCart)
 }
 
+function clearCart(){
+  setCart([])
+}
 
 
 //en el caso que sea una api la que proporciona la data esta sería la opción recomendada
@@ -82,7 +85,7 @@ setCart(updatedCart)
     removeFromCart={removeFromCart}  
     decreaseQuantity={decreaseQuantity}
     increaseQuantity={increaseQuantity}
-   
+    clearCart={clearCart}
     />
 
 
