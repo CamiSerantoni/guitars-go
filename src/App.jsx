@@ -32,7 +32,7 @@ function  addToCart(item) {
     console.log('no existe, agregando')
     setCart([ ...cart, item])
   }
-
+  saveLocalStorage()
   
 } 
 function removeFromCart(id){
@@ -68,6 +68,10 @@ function clearCart(){
   setCart([])
 }
 
+function saveLocalStorage(){
+  /* el estado en react es asíncono, por eso no se actualiza bien la primera vez que algo se deja en  */
+  localStorage.setItem('cart', JSON.stringify(cart))
+}
 
 //en el caso que sea una api la que proporciona la data esta sería la opción recomendada
 /*useEffect(() =>{
