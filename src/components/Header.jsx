@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMemo } from 'react'
 
-export const Header = ({cart, removeFromCart, decreaseQuantity, increaseQuantity, clearCart}) => {
+export const Header = ({cart, removeFromCart, decreaseQuantity, increaseQuantity,clearCart}) => {
 
 
 

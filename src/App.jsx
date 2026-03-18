@@ -9,11 +9,23 @@ import { db } from './data/db'
 function App() {
  /* en este apartado vas dejando toda la lógica*/
 
+
+const initialCart = () =>{
+  const localStorageCart = localStorage.getItem('cart')
+
+  return localStorageCart ? JSON.parse(localStorageCart) : []
+}
+
 const [data, setData] = useState(db)
-const [cart, setCart] = useState([])
+const [cart, setCart] = useState(initialCart)
 
 const MIN_ITEMS = 1;
 const MAX_ITEMS= 5;
+
+useEffect(()=>{
+  localStorage.setItem('cart', JSON.stringify(cart))
+}, [cart])
+
 
 /* enfoque de escribir la función como tal permite crear funciones más descriptivas */
 function  addToCart(item) {
@@ -32,7 +44,7 @@ function  addToCart(item) {
     console.log('no existe, agregando')
     setCart([ ...cart, item])
   }
-  saveLocalStorage()
+ 
   
 } 
 function removeFromCart(id){
@@ -70,8 +82,10 @@ function clearCart(){
 
 function saveLocalStorage(){
   /* el estado en react es asíncono, por eso no se actualiza bien la primera vez que algo se deja en  */
-  localStorage.setItem('cart', JSON.stringify(cart))
+  
 }
+
+
 
 //en el caso que sea una api la que proporciona la data esta sería la opción recomendada
 /*useEffect(() =>{
